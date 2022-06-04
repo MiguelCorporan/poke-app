@@ -11,13 +11,12 @@ import {Flex,Button} from '@chakra-ui/react'
 const AllButon = ({Data}) => {
   
 
-  const [Date, setDate] = useState()
-  const [Poke, setPoke] = useState(false)
+  const [Date, setDate] = useState("")
+  const [Poke, setPoke] = useState([])
+  
 
   const BuscaPoke = (ID) => {
     setDate(ID)
-
-    console.log(ID);
   }
 
   useEffect(() => {
@@ -29,7 +28,6 @@ const AllButon = ({Data}) => {
             const llegada = await Api.json()
             const {pokemon} = llegada
             setPoke(pokemon)
-            console.log(Poke);
 
         } catch (error) {
           console.log(error);
@@ -42,11 +40,12 @@ const AllButon = ({Data}) => {
   return (
     <center>
         {Data && Data.map(element => {
+          const CreteId = `${Math.random()}`
           
-           return <Button colorScheme='blue' mb="1" mx="1" onClick={() => BuscaPoke(element.id)}>{element.name}</Button>        
+           return <Button colorScheme='blue' mb="1" mx="1" onClick={() => BuscaPoke(element.id)} key={CreteId}>{element.name}</Button>        
         })}
 
-        { Poke && <MuestraPokemon Poke = {Poke}  />}
+        { Poke && <MuestraPokemon Poke={Poke}  />}
     </center>
   )
 }

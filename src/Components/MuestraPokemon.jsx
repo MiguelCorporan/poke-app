@@ -11,56 +11,43 @@ import { Box, Button, Grid, Heading, Image, Modal,
 
 import React from "react";
 import { useEffect, useState } from "react";
+import Pokemon from "./Pokemon";
 
 const MuestraPokemon = ({ Poke }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [data, setData] = useState([]);
   const [Selected, setSelected] = useState('')
+  const [change,setChange] = useState(true)
 
   const {name,abilities,sprites,types } = Selected
 
+
   
 
-  useEffect(() => {
-    Poke.map(async ({ pokemon: { url } }) => {
-      const Url = await fetch(url);
-      const datos = await Url.json();
+/*    useEffect(() => {
+   setChange(C => !C)
+  }, [Poke]); */ 
 
-      setData((D) => [...D, datos]);
-    });
-  }, []);
+/* useEffect(() => {
+  
+  Poke.map(async ({ pokemon: { url } }) => {
+    const Url = await fetch(url);
+    const datos = await Url.json();
+
+    setData((D) => [...D, datos]);
+  });
+ 
+}, [change])
+ */
 
  
 
   return (
     <Grid templateColumns={["1fr","1fr 1fr","1fr 1fr 1fr 1fr","1fr 1fr 1fr 1fr 1fr"]} gap={6} mt="4" px="8">
-      {data &&
-        data.map(({ sprites: { front_default }, name, id }) => {
-           
-          return (
-            <Box boxShadow='outline' rounded="2xl" py="8">
-              <Image src={front_default} w="150" h="150" />
-              <Heading fontSize="2xl">{name}</Heading>
-
-              <Button
-                size="md"
-                height="38px"
-                width="80px"
-                my="2"
-                border="2px"
-                borderColor="green.500"
-                onClick={() => {
-                    onOpen()
-                    const finde = data.find( hola => hola.id == id)
-                    console.log(finde);
-                    setSelected(finde)
-                }}
-              >
-                Detalles
-              </Button>
-            </Box>
-          );
-        })}
+      {Poke && Poke.map( ({pokemon:{url}}) =>{
+        const uid = Math.random()
+       return <Pokemon url={url} setSelected={setSelected} onOpen={onOpen} key={uid}/>
+       })}
 
 <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -73,7 +60,7 @@ const MuestraPokemon = ({ Poke }) => {
                         <Text textAlign="center" fontWeight="semibold" fontSize="2xl" >{name}</Text>
                        <Flex flexWrap="wrap">
                        <Image src={sprites.front_default} w="50%"/>
-                        <Image src={sprites.back_default} w="50%"/>
+                        <Image src={sprites.back_default} w="50%"/> 
                        </Flex>
 
                        <Flex justify="space-between" px="4">
