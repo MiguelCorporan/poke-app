@@ -1,19 +1,18 @@
-import { styled } from '@mui/system'
-import React from 'react'
-import styledComponents from 'styled-components'
-import AllButon from './AllButon' 
+import { styled } from "@mui/system";
+import React from "react";
+import styledComponents from "styled-components";
+import AllButon from "./AllButon";
+import pngwing from "../assets/Img/pngwing.png"
 
-import { Center,Image,Text } from '@chakra-ui/react'
+import { AspectRatio, Center, Image, Text } from "@chakra-ui/react";
 
-import pikaa from "../assets/Img/pikaa.png"
-import pokee from "../assets/Img/pokee.png"
-
+import pikaa from "../assets/Img/pikaa.png";
+import pokee from "../assets/Img/pokee.png";
+import AllPoke from "./AllPoke";
 
 const Ini = styledComponents.h2`
     background-color: #d51031;
-`
-
-
+`;
 
 const Vista = styledComponents.div`
  display: flex;
@@ -22,22 +21,37 @@ const Vista = styledComponents.div`
    width: 100px;
    heigth: 100px;
  }
-`
+`;
 
-
-const Inicio = ({Data}) => {
+const Inicio = ({ Data }) => {
   return (
-      <>
-        <Center my="4">
-            <Image src={pikaa} alt="Nada" w="100" h="100" />
-            <Text py="2" px="4" fontWeight="black" fontSize="xl" mx="2" aling="center">Elige tu tipo de pokemon y inicia tu aventura.</Text>
-            <Image src={pokee} alt="Nado" w="100" h="100"/>
-        </Center>
+    <>
+      <Center my="4">
+        <Image src={pikaa} alt="Nada" w="100" h="100" />
+          <Image
+            src={pngwing}
+            alt="naruto"
+            objectFit="cover"
+            w="18rem"
+          />
 
-        <AllButon Data={Data} />
-      </>
-  )
-}
+        <Image src={pokee} alt="Nado" w="100" h="100" />
+      </Center>
+        <Text
+          py="2"
+          px="4"
+          fontWeight="black"
+          fontSize="xl"
+          mx="2"
+          mb="1rem"
+          aling="center"
+        >
+          Elige tu tipo de pokemon y inicia tu aventura.
+        </Text>
 
+      <AllButon Data={Data} />
+    </>
+  );
+};
 
-export default Inicio
+export default Inicio;

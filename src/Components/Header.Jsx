@@ -1,19 +1,20 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
 
-import {Box,Text,Flex} from '@chakra-ui/react'
-
+import { Box, Text, Flex } from "@chakra-ui/react";
 
 const Header = () => {
   return (
-        <Flex bg="cyan.700" justify="center" alignItems="center">
-          <Link to="/" >Inicio</Link>
-                   <Text fontSize="2xl" px="1rem">Tu PokeApi</Text>
-                <Link to="/AllPoke">AllPoke</Link> 
-        </Flex>
-  )
-}
+    <Flex bg="red.500" color="yellow.200" justifyContent="space-between" alignItems="center" p="1rem">
+      <Text fontSize="2xl">
+        Tu PokeApi
+      </Text>
+      <Flex>
+        <Flex as={Link} to="/" pr=".5rem" display="block">Inicio</Flex>
+        <Flex as={Link} to="/AllPoke">AllPoke</Flex>
+      </Flex>
+    </Flex>
+  );
+};
 
-
-
-export default Header
+export default Header;

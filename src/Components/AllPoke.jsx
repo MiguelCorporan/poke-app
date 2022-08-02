@@ -32,6 +32,7 @@ const AllPoke = () => {
     const TodoPoke = async () => {
 
 
+
           try {
             const URLS = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`
             const Llegados = await fetch(URLS)
@@ -63,24 +64,6 @@ const AllPoke = () => {
     setValor(e.target.Hola.value)
   }
 
- /*  const Filtro = (cardFilter, card) => {
-        D.addEventListener("keyup", (e) => {
-            if (e.target.matches(".Card-filter")) {
-                console.log(e.target.value);
-
-                if(e.key === "Escape") e.target.value = ""
-
-              D.querySelectorAll(".card").forEach(el => {
-                    el.textContent.toLowerCase().includes(e.target.value) 
-                  ? el.classList.remove("filter")
-                  : el.classList.add("filter") 
-
-
-              })
-              
-            }
-        })
-} */
 
 const filter = ({target:{value}}) => setTerm(value)
 
@@ -100,18 +83,17 @@ const createBoolean = (text) => {
         <Input type="text" name="Hola" borderWidth="2px" borderColor="black" w="4/12" ml="4" onKeyUp={filter}/>
       </form>
 
-      <Grid templateColumns={["1fr","1fr 1fr","1fr 1fr 1fr 1fr","1fr 1fr 1fr 1fr 1fr"]} gap={6} mt="4" px="8">
-
+      <Grid templateColumns={["1fr","1fr 1fr","1fr 1fr 1fr 1fr","1fr 1fr 1fr 1fr 1fr"]} mt="4"  placeItems="center" justifyItems="center">
       {Valor &&
         Valor.map(({sprites:{front_default},name,id}) => {
           return (
-            <Flex boxShadow='outline' rounded="2xl" py="8" direction="column" align="center"
+            <Flex rounded="2xl" py="8" direction="column" align="center" boxShadow="2xl" maxWidth="200"
              className={ name.includes(term) ? "hola" : "filter" } key={Math.random()} >
 
               <Image src={front_default} w="150" h="150" mx="auto"/>
               <Heading fontSize="2xl" className='name'>{name}</Heading>
 
-              <Button size="md" height="38px" width="80px" my="2" border="2px" borderColor="green.500"
+              <Button size="md" height="38px" width="80px" my="2" 
                 onClick={() => {
                     onOpen()
                     const finde = Valor.find( hola => hola.id == id)
@@ -120,7 +102,7 @@ const createBoolean = (text) => {
               >
                 Detalles
               </Button>
-            </Flex>
+            </Flex> 
           );
 
 

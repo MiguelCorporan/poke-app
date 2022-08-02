@@ -11,7 +11,7 @@ import {Flex,Button} from '@chakra-ui/react'
 const AllButon = ({Data}) => {
   
 
-  const [Date, setDate] = useState("")
+  const [Date, setDate] = useState("normal")
   const [Poke, setPoke] = useState([])
   
 
@@ -42,7 +42,7 @@ const AllButon = ({Data}) => {
         {Data && Data.map(element => {
           const CreteId = `${Math.random()}`
           
-           return <Button colorScheme='blue' mb="1" mx="1" onClick={() => BuscaPoke(element.id)} key={CreteId}>{element.name}</Button>        
+           return <Button bg="red.500" color="yellow.200" mb="1" mx="1" onClick={() => BuscaPoke(element.id)} key={CreteId}  _hover={{ bg: "yellow.300", color:"red.500"}}>{element.name}</Button>        
         })}
 
         { Poke && <MuestraPokemon Poke={Poke}  />}
